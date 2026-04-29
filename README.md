@@ -4,6 +4,8 @@
 
 一个端到端的人脸情绪识别系统，覆盖数据预处理、模型训练、导出与工程化部署。支持图片和视频的离线/在线情绪分析、历史记录与可视化分析界面。模型文件位于 `models/` 目录（示例：`RAF_CNN_83_best_model.h5`, `RAF_SE_83_saved_model/`）。
 
+基于 RAF-DB 的面部表情识别系统演示：https://www.bilibili.com/video/BV1NZ9UBjE13/?vd_source=c437218e7632a71c3aed18e2341a8ae0
+
 ## 主要功能
 - 图片/视频情绪识别（单张预测 / 批量预测 / 视频分析）
 - 人脸检测、对齐（MTCNN 回退至 Haar）、人脸质量评估
