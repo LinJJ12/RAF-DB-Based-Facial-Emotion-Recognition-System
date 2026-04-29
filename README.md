@@ -94,14 +94,4 @@ curl -X POST http://localhost:5000/api/predict \
 - 如果后端提示找不到模型，请检查 `models/` 路径与 `backend/app.py` 中 `MODEL_PATHS` 配置。
 - 若遇到 MTCNN 未安装或检测回退，可安装 `mtcnn` 或回退使用 Haar 级联。
 
-## 贡献与许可
-欢迎 issue 与 PR。可按需补充训练脚本、Dockerfile、CI 配置等。
 
-（示例仓库说明，默认许可请替换为合适的 License，例如 MIT）
-
----
-
-项目文件已生成 README，若需要我可以：
-- 1) 生成英文版 README；
-- 2) 添加 `requirements.txt` 中缺失的 TensorFlow 说明或具体版本；
-- 3) 创建 `Dockerfile` 与 `docker-compose.yml` 示例用于一键部署。
