@@ -30,8 +30,8 @@
 1. 克隆仓库到本地：
 
 ```bash
-git clone <your-repo-url>
-cd <repo-folder>
+git clone https://github.com/LinJiaBao1207/RAF-DB-Based-Facial-Emotion-Recognition-System.git
+cd RAF-DB-Based-Facial-Emotion-Recognition-System
 ```
 
 2. 后端（Windows / cmd）：
