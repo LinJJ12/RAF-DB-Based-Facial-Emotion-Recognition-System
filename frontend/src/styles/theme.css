@@ -1,0 +1,243 @@
+/* 
+ * Inkwell 主题样式配置
+ * 基于优雅的书卷和墨水风格设计
+ */
+
+:root {
+  /* 主色调 */
+  --color-ink: #1A2456;           /* 深蓝灰 - 墨水色 */
+  --color-parchment: #F5F2E9;     /* 米白 - 羊皮纸色 */
+  --color-sand: #E8DCCA;          /* 浅棕 - 沙色 */
+  --color-mahogany: #5D4037;      /* 深棕 - 桃花心木色 */
+  --color-accent: #B71C1C;        /* 暗红 - 强调色 */
+  
+  /* 渐变色 */
+  --gradient-primary: linear-gradient(135deg, var(--color-ink) 0%, rgba(26, 36, 86, 0.9) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, rgba(183, 28, 28, 0.9) 100%);
+  
+  /* 字体 */
+  --font-sans: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  
+  /* 阴影 */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* 圆角 */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  
+  /* 过渡 */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* 深色模式 */
+.dark {
+  --color-parchment: #1A2456;
+  --color-ink: #F5F2E9;
+  --color-sand: #5D4037;
+}
+
+/* 全局工具类 */
+.card-shadow {
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-sand);
+  border-radius: var(--radius-md);
+}
+
+.card-shadow-hover {
+  transition: all var(--transition-base);
+}
+
+.card-shadow-hover:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.paper-float {
+  transform: translateY(0);
+  transition: transform var(--transition-slow);
+}
+
+.paper-float:hover {
+  transform: translateY(-5px) rotate(1deg);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.text-ink {
+  color: var(--color-ink);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.bg-parchment {
+  background-color: var(--color-parchment);
+}
+
+.bg-sand {
+  background-color: var(--color-sand);
+}
+
+.bg-ink {
+  background-color: var(--color-ink);
+}
+
+.bg-mahogany {
+  background-color: var(--color-mahogany);
+}
+
+/* 通用按钮样式 */
+.btn-primary {
+  background-color: var(--color-ink);
+  color: white;
+  transition: all var(--transition-base);
+}
+
+.btn-primary:hover {
+  background-color: rgba(26, 36, 86, 0.9);
+}
+
+.btn-accent {
+  background-color: var(--color-accent);
+  color: white;
+  transition: all var(--transition-base);
+}
+
+.btn-accent:hover {
+  background-color: rgba(183, 28, 28, 0.9);
+}
+
+.btn-mahogany {
+  background-color: var(--color-mahogany);
+  color: white;
+  transition: all var(--transition-base);
+}
+
+.btn-mahogany:hover {
+  background-color: rgba(93, 64, 55, 0.9);
+}
+
+/* 通用标题样式 */
+.title-primary {
+  font-family: var(--font-serif);
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+.title-accent {
+  color: var(--color-accent);
+  font-style: italic;
+}
+
+/* 通用文本样式 */
+.text-muted {
+  color: rgba(26, 36, 86, 0.7);
+}
+
+.text-light {
+  color: rgba(26, 36, 86, 0.6);
+}
+
+/* 链接样式 */
+a {
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-parchment);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-sand);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-mahogany);
+}
+
+/* 动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* 响应式工具类 */
+@media (max-width: 768px) {
+  :root {
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+}
