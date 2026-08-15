@@ -1,10 +1,19 @@
 # 人脸情绪识别系统（基于 RAF-DB）
 
 <p align="center">
+  <img src="assets/logo.svg" alt="Face Emotion Recognition Logo" width="420" />
+</p>
+
+<p align="center">
   <img alt="Python 3.10+" src="https://img.shields.io/badge/Python-3.10%2B-blue" />
   <img alt="Flask" src="https://img.shields.io/badge/Flask-2.x-00A6D6" />
   <img alt="Vue 3" src="https://img.shields.io/badge/Vue-3.x-41B883" />
   <img alt="TensorFlow" src="https://img.shields.io/badge/TensorFlow-Keras-FF6F00" />
+  <img alt="License: CC BY-NC 4.0" src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey" />
+</p>
+
+<p align="center">
+  <strong>基于 RAF-DB 数据集的人脸情绪识别项目</strong>
 </p>
 
 一个基于 RAF-DB 数据集的人脸情绪识别项目，支持图片识别、视频分析、情绪历史与心理健康相关功能，前后端均可运行，适合学习、研究和二次开发。
