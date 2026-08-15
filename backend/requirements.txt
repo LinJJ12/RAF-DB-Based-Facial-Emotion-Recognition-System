@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 Flask==2.3.0
 flask-cors==4.0.0
+Flask-SQLAlchemy==3.0.5
 Pillow==10.0.0
 python-dotenv==1.0.0
 PyJWT==2.8.0
@@ -8,15 +8,6 @@ opencv-python==4.8.1.78
 opencv-contrib-python==4.8.1.78
 
 # Optional: if database is needed
-# Flask-SQLAlchemy==3.0.5
 # pymysql==1.1.0
-=======
-Flask==2.3.0
-flask-cors==4.0.0
-Pillow==10.0.0
-python-dotenv==1.0.0
+# tensorflow==2.15.0
 
-# Optional: if database is needed
-# Flask-SQLAlchemy==3.0.5
-# pymysql==1.1.0
->>>>>>> 138c776de10fc6103a4f59748d2d365b9b0350e6

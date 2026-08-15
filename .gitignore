@@ -5,6 +5,10 @@
 *.swo
 *~
 
+# Local developer workspace artifacts
+.vscode/
+.idea/
+
 # OS
 .DS_Store
 Thumbs.db

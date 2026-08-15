@@ -1,56 +1,140 @@
-# 人脸情绪识别系统（基于 RAF‑DB）
+# 人脸情绪识别系统（基于 RAF-DB）
 
-## 项目概述
+<p align="center">
+  <img alt="Python 3.10+" src="https://img.shields.io/badge/Python-3.10%2B-blue" />
+  <img alt="Flask" src="https://img.shields.io/badge/Flask-2.x-00A6D6" />
+  <img alt="Vue 3" src="https://img.shields.io/badge/Vue-3.x-41B883" />
+  <img alt="TensorFlow" src="https://img.shields.io/badge/TensorFlow-Keras-FF6F00" />
+</p>
 
-一个端到端的人脸情绪识别系统，覆盖数据预处理、模型训练、导出与工程化部署。支持图片和视频的离线/在线情绪分析、历史记录与可视化分析界面。模型文件位于 `models/` 目录（示例：`RAF_CNN_83_best_model.h5`, `RAF_SE_83_saved_model/`）。
+一个基于 RAF-DB 数据集的人脸情绪识别项目，支持图片识别、视频分析、情绪历史与心理健康相关功能，前后端均可运行，适合学习、研究和二次开发。
 
-基于 RAF-DB 的面部表情识别系统演示：https://www.bilibili.com/video/BV1NZ9UBjE13/?vd_source=c437218e7632a71c3aed18e2341a8ae0
+> 许可证说明：本项目仅供学习、研究和个人技术交流使用，禁止任何商业用途，包括但不限于出售、商业部署、收费服务或其他盈利行为。
+> 若需复用代码，请保留原始说明，并确保遵守本项目的非商用约定。
 
-## 主要功能
-- 图片/视频情绪识别（单张预测 / 批量预测 / 视频分析）
-- 人脸检测、对齐（MTCNN 回退至 Haar）、人脸质量评估
-- 多模型支持：CNN / VGG / SE(Net) 变体（.h5 与 SavedModel）
-- 前端使用 Vue3 提供交互页面与可视化（ECharts）
-- 本地历史存储（IndexedDB）与服务器端轻量持久化
+---
+
+## 项目简介
+
+该项目覆盖了从数据预处理、模型推理到结果展示的完整流程，包括：
+
+- 图片情绪识别
+- 视频情绪分析
+- 人脸检测 / 对齐 / 质量评估
+- 多模型支持：CNN、VGG、SE-Net
+- 用户登录、管理后台、记录历史
+- 心理健康模块：情绪汇总、日记、感恩记录、健康评估
+
+基于 RAF-DB 的表情识别任务，后端使用 Flask + TensorFlow/Keras，前端使用 Vue 3 + Vite，整体结构清晰，便于扩展和部署。
+
+---
+
+## 功能特性
+
+### 1. 情绪识别
+
+- 单张图片预测
+- 批量图片预测
+- 视频抽帧分析
+- 支持多种模型输出与切换
+
+### 2. 图像增强与脸部处理
+
+- MTCNN 人脸检测与对齐
+- Haar 级联回退方案
+- 人脸质量评估（清晰度、亮度、对比度）
+- 图像增强用于前端展示与优化识别效果
+
+### 3. 用户与管理能力
+
+- JWT 认证
+- 用户登录/注册/资料管理
+- 管理员后台
+- 历史记录查询与统计
+
+### 4. 心理健康模块
+
+- 情绪汇总
+- 健康风险评估
+- 情绪日记
+- 感恩记录
+
+---
 
 ## 技术栈
-- 前端：Vue 3, Vite, Pinia, Vue Router, Element Plus, Axios, ECharts
-- 后端：Python, Flask, flask-cors, OpenCV, Pillow, PyJWT
-- 深度学习：TensorFlow / Keras（.h5 与 SavedModel）
-- 模型文件：放在 `models/` 目录
 
-## 目录结构（简要）
-- `backend/`：Flask 服务、模型加载、视频与图像预处理、数据库代码
-- `frontend/`：Vue 前端代码（`frontend/src/`）
-- `models/`：训练后保存的模型文件（.h5 / SavedModel）
-- `uploads/`：上传的视频与预测图片缓存
+- 前端：Vue 3、Vite、Pinia、Vue Router、Element Plus、Axios、ECharts
+- 后端：Python、Flask、Flask-CORS、OpenCV、Pillow、PyJWT
+- 深度学习：TensorFlow / Keras
+- 数据库：SQLite（可扩展为 MySQL / PostgreSQL）
 
-## 快速开始（开发/本地）
+---
 
-推荐在虚拟环境中运行后端服务，并在前端单独启动开发服务器。
+## 系统架构
 
-1. 克隆仓库到本地：
+```text
+RAF-DB-Facial-Emotion-Recognition-System
+├── backend/                  # Flask 后端、API、模型加载、数据库逻辑
+│   ├── app.py                # 主应用入口
+│   ├── auth.py               # 认证与用户逻辑
+│   ├── config.py             # 配置与路径定义
+│   ├── database.py           # 数据模型与初始化
+│   ├── health_api.py         # 心理健康接口
+│   ├── image_preprocess.py   # 图像预处理
+│   ├── face_quality.py       # 人脸质量检测
+│   ├── video_processor.py    # 视频分析处理
+│   ├── requirements.txt      # Python 依赖
+│   ├── tests/                # 后端测试脚本
+│   ├── instance/             # 运行时 SQLite 数据库目录（忽略提交）
+│   ├── uploads/              # 上传文件与缓存（忽略提交）
+│   └── logs/                 # 运行日志（忽略提交）
+├── frontend/                 # Vue 前端
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   └── vite.config.js
+├── scripts/                  # 项目脚本工具
+│   └── create_home.py
+├── models/                   # 训练产物（.h5 / SavedModel，建议忽略）
+├── .gitignore                # Git 忽略规则
+├── README.md                 # 项目说明
+├── LICENSE                   # 如需补充时添加
+└── .vscode/                  # 本地编辑器配置（已忽略，不应提交）
+```
+
+> 注意：模型文件通常不适合直接提交到公共仓库，项目已在 `.gitignore` 中忽略大多数模型与生成产物。
+
+---
+
+## 快速开始
+
+### 1. 克隆项目
 
 ```bash
-git clone https://github.com/LinJiaBao1207/RAF-DB-Based-Facial-Emotion-Recognition-System.git
+git clone git@github.com:LinJJ12/RAF-DB-Based-Facial-Emotion-Recognition-System.git
 cd RAF-DB-Based-Facial-Emotion-Recognition-System
 ```
 
-2. 后端（Windows / cmd）：
+### 2. 后端启动
+
+Windows / cmd：
 
 ```cmd
 cd backend
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
-# 安装 TensorFlow（根据是否有 GPU，选择 tensorflow 或 tensorflow-cpu）
 pip install "tensorflow"
 python app.py
 ```
 
-默认后台服务监听 `http://0.0.0.0:5000`。生产部署建议使用 WSGI 容器（gunicorn、uvicorn 或 Docker）。
+默认服务地址：
 
-3. 前端：
+```text
+http://localhost:5000
+```
+
+### 3. 前端启动
 
 ```cmd
 cd frontend
@@ -58,22 +142,26 @@ npm install
 npm run dev
 ```
 
-默认前端开发服务器由 Vite 提供，详情见 `frontend/package.json`。
+默认前端地址：
 
-4. 模型文件
+```text
+http://localhost:3000
+```
 
-已包含示例训练好的模型在 `models/` 目录。后端会根据 `backend/app.py` 中的 `MODEL_PATHS` 自动查找并加载这些模型。
+---
 
-## 常用 API（后端示例）
+## 主要接口
 
-- `GET /api/health` — 健康检查与可用模型列表
-- `GET /api/models` — 列出可用模型与路径
-- `POST /api/predict` — 单张图片预测（JSON，image 为 base64）
-- `POST /api/batch_predict` — 批量图片预测
-- `POST /api/video/upload` — 上传视频（multipart/form-data）
-- `POST /api/video/analyze` — 分析已上传视频（video_id）
+后端主要接口包括：
 
-示例：使用 curl 对单张图片预测（假设已将图片编码为 base64 并去掉前缀）
+- `GET /api/health`：服务健康检查
+- `GET /api/models`：模型状态与路径
+- `POST /api/predict`：单图情绪识别
+- `POST /api/batch_predict`：批量识别
+- `POST /api/video/upload`：上传视频
+- `POST /api/video/analyze`：视频情绪分析
+
+示例：
 
 ```bash
 curl -X POST http://localhost:5000/api/predict \
@@ -81,19 +169,56 @@ curl -X POST http://localhost:5000/api/predict \
   -d '{"image":"data:image/jpeg;base64,/9j/4AAQ...","model":"cnn","detect_face":true}'
 ```
 
-返回 JSON 中包含：`emotion`, `emotion_cn`, `confidence`, `probabilities`, `face_quality` 与 `performance` 信息。
+---
 
-## 运行注意事项与依赖
-- `backend/requirements.txt` 列出基础依赖（Flask、OpenCV 等），但未指定 TensorFlow（需手动安装）。
-- 若使用 GPU 训练/推理，请安装对应的 GPU 版 TensorFlow 并配置 CUDA/cuDNN。
-- 推荐为 Python 3.8+ 环境。
+## 模型说明
 
-## 模型训练与导出（简要）
-- 训练基于 RAF‑DB 数据集，尝试的模型包括 VGG、常规 CNN、以及带 SE 模块的网络。
-- 导出为 Keras `.h5` 或 `SavedModel` 格式以便后端加载。
+目前项目支持以下模型类型：
 
-## 常见问题与调试
-- 如果后端提示找不到模型，请检查 `models/` 路径与 `backend/app.py` 中 `MODEL_PATHS` 配置。
-- 若遇到 MTCNN 未安装或检测回退，可安装 `mtcnn` 或回退使用 Haar 级联。
+- `cnn`
+- `vgg`
+- `se81`
+- `se83`
+
+模型文件应放置在 `models/` 目录中，后端会自动按 `MODEL_PATHS` 进行加载。
+
+若要公开发布代码，建议保留代码、配置与训练脚本，但忽略大型模型文件与生成产物，这样更适合 GitHub 开源托管。
+
+---
+
+## 运行与部署注意事项
+
+- 推荐 Python 3.10+ 环境
+- TensorFlow 需单独安装，建议与训练环境版本保持一致
+- 若 GPU 环境可使用对应版本的 TensorFlow + CUDA / cuDNN
+- 生产部署建议使用 Gunicorn / uWSGI 等 Web Server
+- 大模型、日志、上传文件和缓存目录建议保持在 `.gitignore` 中忽略
+
+---
+
+## 目录说明
+
+- `backend/`：后端接口、数据库、预处理、推理逻辑
+- `backend/tests/`：后端单元/接口测试脚本
+- `frontend/`：前端页面、路由、状态管理、API 适配
+- `scripts/`：项目辅助脚本
+- `models/`：保存模型文件（通常应忽略不提交）
+- `backend/uploads/`：上传图片和视频缓存，通常应忽略提交
+- `backend/logs/`：运行日志，通常应忽略提交
+
+---
+
+## 许可与说明
+
+本项目适合用于学习、研究和个人二次开发。若将其用于公开发布或商业场景，请根据具体需求补充清晰的开源许可证和项目说明。
+
+---
+
+## 相关参考
+
+- RAF-DB 数据集：用于表情识别任务训练
+- 前端与后端代码均位于当前仓库中，可直接本地运行
+
+如果你希望，我还可以继续把这个 README 再调整成更偏“GitHub 风格”的版本，例如更适合正式开源仓库展示的布局。
 
 
