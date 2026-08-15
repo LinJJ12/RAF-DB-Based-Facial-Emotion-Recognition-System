@@ -1,0 +1,75 @@
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+venv/
+.venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Logs / runtime generated files
+*.log
+backend/logs/
+backend/instance/
+backend/uploads/
+log/
+plots/
+weights/
+models/
+
+# Frontend artifacts
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.cache/
+frontend/public/videos/
+frontend/public/**/*.mp4
+frontend/public/**/*.mov
+frontend/public/**/*.avi
+frontend/public/**/*.mkv
+frontend/public/**/*.webm
+
+# Video / media files
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.wmv
+*.flv
+*.webm
+*.m4v
+*.mpg
+*.mpeg
+
+# ML model files
+*.h5
+*.weights
+*.weights.h5
+*.pb
+*.onnx
+*.tflite
+*.ckpt
+*.index
+*.data-00000-of-00001
+
+# Local DB / temp
+*.db
+*.sqlite
+*.sqlite3
+*.tmp
