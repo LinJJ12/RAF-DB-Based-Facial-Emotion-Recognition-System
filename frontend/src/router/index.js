@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+﻿import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '../components/Layout.vue'
 import { useUserStore } from '../stores/user'
 import { ElMessage } from 'element-plus'
@@ -7,7 +7,7 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/Login.vue'),
+    component: () => import('../pages/Login.vue'),
     meta: { 
       title: '登录',
       requiresAuth: false,
@@ -22,61 +22,61 @@ const routes = [
       {
         path: '',
         name: 'Home',
-        component: () => import('../views/Home.vue'),
+        component: () => import('../pages/Home.vue'),
         meta: { title: '首页' }
       },
       {
         path: 'image-analysis',
         name: 'ImageAnalysis',
-        component: () => import('../views/ImageAnalysis.vue'),
+        component: () => import('../pages/ImageAnalysis.vue'),
         meta: { title: '图片识别' }
       },
       {
         path: 'data-analysis',
         name: 'Analysis',
-        component: () => import('../views/Analysis.vue'),
+        component: () => import('../pages/Analysis.vue'),
         meta: { title: '数据分析' }
       },
       {
         path: 'health',
         name: 'Health',
-        component: () => import('../views/Health.vue'),
+        component: () => import('../pages/Health.vue'),
         meta: { title: '心理健康' }
       },
       {
         path: 'history',
         name: 'History',
-        component: () => import('../views/History.vue'),
+        component: () => import('../pages/History.vue'),
         meta: { title: '历史记录' }
       },
       {
         path: 'video',
         name: 'VideoAnalysis',
-        component: () => import('../views/VideoAnalysis.vue'),
+        component: () => import('../pages/VideoAnalysis.vue'),
         meta: { title: '视频分析' }
       },
       {
         path: 'user',
         name: 'User',
-        component: () => import('../views/User.vue'),
+        component: () => import('../pages/User.vue'),
         meta: { title: '个人中心' }
       },
       {
         path: 'about',
         name: 'About',
-        component: () => import('../views/About.vue'),
+        component: () => import('../pages/About.vue'),
         meta: { title: '关于我们' }
       },
       {
         path: 'help',
         name: 'Help',
-        component: () => import('../views/About.vue'), // 暂时重用About页面
+        component: () => import('../pages/About.vue'), // 暂时重用About页面
         meta: { title: '帮助中心' }
       },
       {
         path: 'admin',
         name: 'Admin',
-        component: () => import('../views/Admin.vue'),
+        component: () => import('../pages/Admin.vue'),
         meta: { 
           title: '管理员面板',
           requiresAdmin: true

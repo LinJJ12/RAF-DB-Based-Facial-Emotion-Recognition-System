@@ -4,9 +4,16 @@
 """
 import sys
 import os
+from pathlib import Path
+
+BACKEND_DIR = Path(__file__).resolve().parents[1]
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
+
 import numpy as np
 from PIL import Image
-from image_preprocess import preprocess_for_model, detect_and_align_mtcnn
+from src.ml.image_preprocess import preprocess_for_model, detect_and_align_mtcnn
+from src.config.settings import MODEL_PATHS
 import tensorflow as tf
 from tensorflow import keras
 
@@ -16,9 +23,9 @@ EMOTION_LABELS_CN = ['生气', '厌恶', '害怕', '高兴', '平静', '悲伤',
 def load_model_safe(model_name):
     """安全加载模型"""
     model_paths = {
-        'vgg': '../models/RAF_VGG_80_best_model.h5',
-        'se81': '../models/RAF_SE_81_saved_model',
-        'se83': '../models/RAF_SE_83_saved_model'
+        'vgg': MODEL_PATHS['vgg'],
+        'se81': MODEL_PATHS['se81'],
+        'se83': MODEL_PATHS['se83']
     }
     
     path = model_paths.get(model_name)

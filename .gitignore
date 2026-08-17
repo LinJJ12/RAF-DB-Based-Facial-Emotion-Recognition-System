@@ -32,6 +32,10 @@ ENV/
 backend/logs/
 backend/instance/
 backend/uploads/
+backend/data/uploads/
+backend/data/logs/
+backend/data/db/*.db
+backend/data/db/*.sqlite*
 log/
 plots/
 weights/

@@ -6,7 +6,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import App from './App.vue'
 import router from './router'
 import { initStorage } from './utils/storage'
-import './styles/theme.css'
+import './assets/styles/theme.css'
 
 const app = createApp(App)
 const pinia = createPinia()

@@ -3,10 +3,17 @@
 """
 import sys
 import os
+from pathlib import Path
+
+BACKEND_DIR = Path(__file__).resolve().parents[1]
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
+
 import numpy as np
 import tensorflow as tf
 from PIL import Image
-from image_preprocess import preprocess_for_model
+from src.ml.image_preprocess import preprocess_for_model
+from src.config.settings import MODEL_PATHS
 
 def test_se_model():
     print("="*50)
@@ -15,8 +22,8 @@ def test_se_model():
     
     # 测试两个SE模型
     models_to_test = [
-        ('SE-81', './models/RAF_SE_81_saved_model'),
-        ('SE-83', './models/RAF_SE_83_saved_model')
+        ('SE-81', MODEL_PATHS['se81']),
+        ('SE-83', MODEL_PATHS['se83'])
     ]
     
     all_passed = True
@@ -104,7 +111,7 @@ def test_se_model():
     if all_passed:
         print("✓ 所有测试通过!")
         print("\n下一步:")
-        print("1. 启动后端服务: python app.py")
+        print("1. 启动后端服务: python main.py")
         print("2. 在前端中选择 SE-81 或 SE-83 模型")
         print("3. 上传图片进行识别")
     else:

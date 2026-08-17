@@ -1,9 +1,16 @@
 """
 测试不同模型的预处理是否正确
 """
+import sys
+from pathlib import Path
+
+BACKEND_DIR = Path(__file__).resolve().parents[1]
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
+
 import numpy as np
 from PIL import Image
-from image_preprocess import preprocess_for_shape
+from src.ml.image_preprocess import preprocess_for_shape
 
 # 创建测试图像 (100x100 RGB, 所有像素值为128)
 test_img = Image.new('RGB', (100, 100), color=(128, 128, 128))

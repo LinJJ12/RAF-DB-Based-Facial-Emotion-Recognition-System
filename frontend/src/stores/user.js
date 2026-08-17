@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
+﻿import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import api from '../utils/api'
+import api from '../api/client'
 import { ElMessage } from 'element-plus'
 
 export const useUserStore = defineStore('user', () => {

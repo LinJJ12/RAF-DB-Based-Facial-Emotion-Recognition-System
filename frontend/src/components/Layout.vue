@@ -11,7 +11,7 @@
           >
             <el-icon :size="20"><operation /></el-icon>
           </el-button>
-          <span class="logo-icon">🎭</span>
+          <img class="logo-icon" src="@/assets/brand/logo.png" alt="情绪识别系统" />
           <span class="logo-text">情绪识别系统</span>
         </div>
         
@@ -356,8 +356,12 @@ onUnmounted(() => {
 }
 
 .logo-icon {
-  font-size: 2rem;
-  margin-right: 0.5rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
 }
 
 .nav-menu {

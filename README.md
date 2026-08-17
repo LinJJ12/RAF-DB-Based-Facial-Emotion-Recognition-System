@@ -1,7 +1,7 @@
 # 人脸情绪识别系统（基于 RAF-DB）
 
 <p align="center">
-  <img src="assets/logo.svg" alt="Face Emotion Recognition Logo" width="420" />
+  <img src="frontend/public/logo.png" alt="Face Emotion Recognition Logo" width="180" />
 </p>
 
 <p align="center">
@@ -83,35 +83,38 @@
 
 ```text
 RAF-DB-Facial-Emotion-Recognition-System
-├── backend/                  # Flask 后端、API、模型加载、数据库逻辑
-│   ├── app.py                # 主应用入口
-│   ├── auth.py               # 认证与用户逻辑
-│   ├── config.py             # 配置与路径定义
-│   ├── database.py           # 数据模型与初始化
-│   ├── health_api.py         # 心理健康接口
-│   ├── image_preprocess.py   # 图像预处理
-│   ├── face_quality.py       # 人脸质量检测
-│   ├── video_processor.py    # 视频分析处理
-│   ├── requirements.txt      # Python 依赖
-│   ├── tests/                # 后端测试脚本
-│   ├── instance/             # 运行时 SQLite 数据库目录（忽略提交）
-│   ├── uploads/              # 上传文件与缓存（忽略提交）
-│   └── logs/                 # 运行日志（忽略提交）
-├── frontend/                 # Vue 前端
+├── backend/
+│   ├── main.py               # 启动入口（python main.py）
+│   ├── requirements.txt
 │   ├── src/
-│   ├── public/
+│   │   ├── api/              # Flask 路由（app、health）
+│   │   ├── auth/             # JWT 认证
+│   │   ├── config/           # 路径与模型配置（单一来源）
+│   │   ├── storage/          # SQLAlchemy 模型
+│   │   └── ml/               # 预处理 / 人脸质量 / 视频
+│   ├── scripts/              # 一次性迁移与运维脚本
+│   ├── tests/
+│   └── data/                 # 运行时 uploads / logs / db（忽略提交）
+├── frontend/
+│   ├── src/
+│   │   ├── pages/            # 路由页面
+│   │   ├── api/              # HTTP 客户端
+│   │   ├── components/ / stores/ / utils / router /
+│   │   └── assets/
+│   │       ├── brand/        # Logo 等品牌图
+│   │       └── styles/
+│   ├── public/               # favicon / 静态 logo
 │   ├── package.json
 │   └── vite.config.js
-├── scripts/                  # 项目脚本工具
-│   └── create_home.py
 ├── models/                   # 训练产物（.h5 / SavedModel，建议忽略）
-├── .gitignore                # Git 忽略规则
-├── README.md                 # 项目说明
-├── LICENSE                   # 如需补充时添加
-└── .vscode/                  # 本地编辑器配置（已忽略，不应提交）
+├── docs/                     # 架构与品牌设计稿
+├── .gitignore
+├── README.md
+└── LICENSE
 ```
 
 > 注意：模型文件通常不适合直接提交到公共仓库，项目已在 `.gitignore` 中忽略大多数模型与生成产物。
+> 更细的后端说明见 [backend/README.md](backend/README.md)。
 
 ---
 
@@ -134,7 +137,7 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 pip install "tensorflow"
-python app.py
+python main.py
 ```
 
 默认服务地址：
@@ -207,13 +210,25 @@ curl -X POST http://localhost:5000/api/predict \
 
 ## 目录说明
 
-- `backend/`：后端接口、数据库、预处理、推理逻辑
+- `backend/`：后端接口、数据库、预处理、推理逻辑（代码在 `backend/src/`）
+- `backend/scripts/`：数据库迁移与运维一次性脚本
 - `backend/tests/`：后端单元/接口测试脚本
-- `frontend/`：前端页面、路由、状态管理、API 适配
-- `scripts/`：项目辅助脚本
+- `backend/data/`：上传文件、日志与 SQLite（通常应忽略提交）
+- `frontend/`：前端页面（`pages/`）、路由、状态管理、API 适配
+- `frontend/src/assets/brand/`、`frontend/public/`：应用 Logo / Favicon
+- `docs/`：目录结构说明与品牌设计源图
 - `models/`：保存模型文件（通常应忽略不提交）
-- `backend/uploads/`：上传图片和视频缓存，通常应忽略提交
-- `backend/logs/`：运行日志，通常应忽略提交
+
+更细的目录约定见 [docs/directory-structure.md](docs/directory-structure.md)。
+
+---
+
+## 环境变量（建议）
+
+| 变量 | 说明 |
+|------|------|
+| `JWT_SECRET_KEY` | JWT 签名密钥；生产环境务必设置为强随机值 |
+| `DATABASE_URL` | 可选；默认使用 `backend/data/db/emotion_recognition.db` |
 
 ---
 

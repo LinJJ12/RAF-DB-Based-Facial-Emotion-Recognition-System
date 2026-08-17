@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
+﻿import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import api from '../utils/api'
+import api from '../api/client'
 import storageManager from '../utils/storage'
 import { 
   saveImagePredictions, 
