@@ -1,7 +1,7 @@
 # 人脸情绪识别系统（基于 RAF-DB）
 
 <p align="center">
-  <img src="frontend/public/logo.png" alt="Face Emotion Recognition Logo" width="180" />
+  <img src="frontend/public/logo.png" alt="Facial Emotion Recognition Logo" width="160" />
 </p>
 
 <p align="center">
@@ -13,123 +13,90 @@
 </p>
 
 <p align="center">
-  <strong>基于 RAF-DB 数据集的人脸情绪识别项目</strong>
+  <strong>基于 RAF-DB 的人脸情绪识别系统</strong><br />
+  支持图片识别、视频分析、历史记录与心理健康辅助功能
 </p>
-
-一个基于 RAF-DB 数据集的人脸情绪识别项目，支持图片识别、视频分析、情绪历史与心理健康相关功能，前后端均可运行，适合学习、研究和二次开发。
-
-> 许可证说明：本项目仅供学习、研究和个人技术交流使用，禁止任何商业用途，包括但不限于出售、商业部署、收费服务或其他盈利行为。
-> 若需复用代码，请保留原始说明，并确保遵守本项目的非商用约定。
 
 ---
 
-## 项目简介
+## 简介
 
-该项目覆盖了从数据预处理、模型推理到结果展示的完整流程，包括：
+本项目面向学习与研究场景，完整覆盖人脸情绪识别的常见链路：图像预处理、多模型推理、结果展示与用户侧能力。后端基于 Flask 与 TensorFlow / Keras，前端基于 Vue 3 与 Vite。
 
-- 图片情绪识别
-- 视频情绪分析
-- 人脸检测 / 对齐 / 质量评估
-- 多模型支持：CNN、VGG、SE-Net
-- 用户登录、管理后台、记录历史
-- 心理健康模块：情绪汇总、日记、感恩记录、健康评估
+主要能力包括：
 
-基于 RAF-DB 的表情识别任务，后端使用 Flask + TensorFlow/Keras，前端使用 Vue 3 + Vite，整体结构清晰，便于扩展和部署。
+- 单图 / 批量图片情绪识别
+- 视频抽帧情绪分析
+- 人脸检测、对齐与质量评估
+- 多模型切换：CNN、VGG、SE-Net
+- JWT 认证、用户管理与管理后台
+- 情绪汇总、日记、感恩记录与健康评估等辅助模块
+
+> **许可说明**：本项目采用 [CC BY-NC 4.0](LICENSE)。仅供学习、研究与个人技术交流；禁止商业用途（含出售、商业部署、收费服务等）。复用时请保留署名并遵守非商用约定。
 
 ---
 
 ## 功能特性
 
-### 1. 情绪识别
+| 模块 | 说明 |
+|------|------|
+| 情绪识别 | 单图预测、批量预测、视频抽帧分析、多模型切换 |
+| 图像处理 | MTCNN 人脸检测与对齐、Haar 回退、清晰度 / 亮度 / 对比度评估 |
+| 用户与管理 | JWT 认证、注册登录、资料管理、管理后台、历史统计 |
+| 心理健康辅助 | 情绪汇总、健康评估、情绪日记、感恩记录 |
 
-- 单张图片预测
-- 批量图片预测
-- 视频抽帧分析
-- 支持多种模型输出与切换
-
-### 2. 图像增强与脸部处理
-
-- MTCNN 人脸检测与对齐
-- Haar 级联回退方案
-- 人脸质量评估（清晰度、亮度、对比度）
-- 图像增强用于前端展示与优化识别效果
-
-### 3. 用户与管理能力
-
-- JWT 认证
-- 用户登录/注册/资料管理
-- 管理员后台
-- 历史记录查询与统计
-
-### 4. 心理健康模块
-
-- 情绪汇总
-- 健康风险评估
-- 情绪日记
-- 感恩记录
+> 本系统输出仅供参考，不构成医学或心理诊断建议。
 
 ---
 
 ## 技术栈
 
-- 前端：Vue 3、Vite、Pinia、Vue Router、Element Plus、Axios、ECharts
-- 后端：Python、Flask、Flask-CORS、OpenCV、Pillow、PyJWT
-- 深度学习：TensorFlow / Keras
-- 数据库：SQLite（可扩展为 MySQL / PostgreSQL）
+- **前端**：Vue 3、Vite、Pinia、Vue Router、Element Plus、Axios、ECharts
+- **后端**：Python、Flask、Flask-CORS、Flask-SQLAlchemy、OpenCV、Pillow、PyJWT
+- **深度学习**：TensorFlow / Keras
+- **数据存储**：默认 SQLite（可通过 `DATABASE_URL` 切换）
 
 ---
 
-## 系统架构
+## 仓库结构
 
 ```text
-RAF-DB-Facial-Emotion-Recognition-System
-├── backend/
-│   ├── main.py               # 启动入口（python main.py）
-│   ├── requirements.txt
-│   ├── src/
-│   │   ├── api/              # Flask 路由（app、health）
-│   │   ├── auth/             # JWT 认证
-│   │   ├── config/           # 路径与模型配置（单一来源）
-│   │   ├── storage/          # SQLAlchemy 模型
-│   │   └── ml/               # 预处理 / 人脸质量 / 视频
-│   ├── scripts/              # 一次性迁移与运维脚本
+.
+├── backend/                 # Flask API
+│   ├── main.py              # 启动入口
+│   ├── src/                 # 运行时代码（api / auth / config / storage / ml）
+│   ├── scripts/             # 迁移与运维脚本
 │   ├── tests/
-│   └── data/                 # 运行时 uploads / logs / db（忽略提交）
-├── frontend/
-│   ├── src/
-│   │   ├── pages/            # 路由页面
-│   │   ├── api/              # HTTP 客户端
-│   │   ├── components/ / stores/ / utils / router /
-│   │   └── assets/
-│   │       ├── brand/        # Logo 等品牌图
-│   │       └── styles/
-│   ├── public/               # favicon / 静态 logo
-│   ├── package.json
-│   └── vite.config.js
-├── models/                   # 训练产物（.h5 / SavedModel，建议忽略）
-├── docs/                     # 架构与品牌设计稿
-├── .gitignore
-├── README.md
-└── LICENSE
+│   └── data/                # 运行时数据（uploads / logs / db，内容默认忽略）
+├── frontend/                # Vue 3 前端
+│   ├── public/              # Favicon、Logo 等静态资源
+│   └── src/                 # pages / api / assets / stores ...
+├── models/                  # 模型权重（大文件，默认忽略）
+├── docs/                    # 目录约定与设计源文件
+├── LICENSE
+└── README.md
 ```
 
-> 注意：模型文件通常不适合直接提交到公共仓库，项目已在 `.gitignore` 中忽略大多数模型与生成产物。
-> 更细的后端说明见 [backend/README.md](backend/README.md)。
+详细约定见 [docs/directory-structure.md](docs/directory-structure.md)，后端说明见 [backend/README.md](backend/README.md)。
 
 ---
 
 ## 快速开始
 
-### 1. 克隆项目
+### 环境要求
+
+- Python 3.10+
+- Node.js 18+（建议）
+- 将模型文件放置于仓库根目录 `models/`（路径由 `backend/src/config/settings.py` 统一管理）
+
+### 1. 克隆
 
 ```bash
-git clone git@github.com:LinJJ12/RAF-DB-Based-Facial-Emotion-Recognition-System.git
+git clone https://github.com/LinJJ12/RAF-DB-Based-Facial-Emotion-Recognition-System.git
 cd RAF-DB-Based-Facial-Emotion-Recognition-System
 ```
 
-### 2. 后端启动
-
-Windows / cmd：
+### 2. 后端
 
 ```cmd
 cd backend
@@ -140,13 +107,11 @@ pip install "tensorflow"
 python main.py
 ```
 
-默认服务地址：
+默认地址：`http://localhost:5000`
 
-```text
-http://localhost:5000
-```
+也可从仓库根目录执行：`python backend/main.py`。
 
-### 3. 前端启动
+### 3. 前端
 
 ```cmd
 cd frontend
@@ -154,95 +119,69 @@ npm install
 npm run dev
 ```
 
-默认前端地址：
-
-```text
-http://localhost:3000
-```
+默认地址：`http://localhost:3000`（开发服务器将 `/api` 代理至后端）。
 
 ---
 
-## 主要接口
+## 环境变量
 
-后端主要接口包括：
+| 变量 | 说明 |
+|------|------|
+| `JWT_SECRET_KEY` | JWT 签名密钥。**部署前必须设置为足够随机的强密钥** |
+| `DATABASE_URL` | 可选。默认：`backend/data/db/emotion_recognition.db` |
 
-- `GET /api/health`：服务健康检查
-- `GET /api/models`：模型状态与路径
-- `POST /api/predict`：单图情绪识别
-- `POST /api/batch_predict`：批量识别
-- `POST /api/video/upload`：上传视频
-- `POST /api/video/analyze`：视频情绪分析
+---
+
+## 主要 API
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| `GET` | `/api/health` | 服务健康检查 |
+| `GET` | `/api/models` | 模型状态 |
+| `POST` | `/api/predict` | 单图情绪识别 |
+| `POST` | `/api/batch_predict` | 批量识别 |
+| `POST` | `/api/video/upload` | 上传视频 |
+| `POST` | `/api/video/analyze` | 视频情绪分析 |
 
 示例：
 
 ```bash
 curl -X POST http://localhost:5000/api/predict \
   -H "Content-Type: application/json" \
-  -d '{"image":"data:image/jpeg;base64,/9j/4AAQ...","model":"cnn","detect_face":true}'
+  -d "{\"image\":\"data:image/jpeg;base64,...\",\"model\":\"cnn\",\"detect_face\":true}"
 ```
 
 ---
 
 ## 模型说明
 
-目前项目支持以下模型类型：
-
-- `cnn`
-- `vgg`
-- `se81`
-- `se83`
-
-模型文件应放置在 `models/` 目录中，后端会自动按 `MODEL_PATHS` 进行加载。
-
-若要公开发布代码，建议保留代码、配置与训练脚本，但忽略大型模型文件与生成产物，这样更适合 GitHub 开源托管。
+支持的模型键名：`cnn`、`vgg`、`se81`、`se83`。  
+权重与 SavedModel 放置于 `models/`，由配置中的 `MODEL_PATHS` 加载。大型模型文件不纳入版本库，请按训练或发布说明自行准备。
 
 ---
 
-## 运行与部署注意事项
+## 安全与隐私
 
-- 推荐 Python 3.10+ 环境
-- TensorFlow 需单独安装，建议与训练环境版本保持一致
-- 若 GPU 环境可使用对应版本的 TensorFlow + CUDA / cuDNN
-- 生产部署建议使用 Gunicorn / uWSGI 等 Web Server
-- 大模型、日志、上传文件和缓存目录建议保持在 `.gitignore` 中忽略
+- 上传图片 / 视频默认保存在本地 `backend/data/`，请勿将含真实用户数据的数据库、日志或上传目录提交到公开仓库。
+- 公网或共享环境部署前，务必配置 `JWT_SECRET_KEY`，并修改或禁用本地演示用账号与弱口令。
+- 本仓库文档与示例不包含真实用户隐私数据；请勿在 Issue、截图或提交中粘贴个人身份信息、密钥或生产凭据。
 
 ---
 
-## 目录说明
+## 部署注意
 
-- `backend/`：后端接口、数据库、预处理、推理逻辑（代码在 `backend/src/`）
-- `backend/scripts/`：数据库迁移与运维一次性脚本
-- `backend/tests/`：后端单元/接口测试脚本
-- `backend/data/`：上传文件、日志与 SQLite（通常应忽略提交）
-- `frontend/`：前端页面（`pages/`）、路由、状态管理、API 适配
-- `frontend/src/assets/brand/`、`frontend/public/`：应用 Logo / Favicon
-- `docs/`：目录结构说明与品牌设计源图
-- `models/`：保存模型文件（通常应忽略不提交）
-
-更细的目录约定见 [docs/directory-structure.md](docs/directory-structure.md)。
+- TensorFlow 版本建议与训练环境保持一致；GPU 需匹配 CUDA / cuDNN。
+- 生产环境建议使用 Gunicorn / uWSGI 等 WSGI 服务器，并关闭调试模式。
+- 日志、上传缓存与数据库文件应继续保持在 `.gitignore` 中。
 
 ---
 
-## 环境变量（建议）
+## 许可
 
-| 变量 | 说明 |
-|------|------|
-| `JWT_SECRET_KEY` | JWT 签名密钥；生产环境务必设置为强随机值 |
-| `DATABASE_URL` | 可选；默认使用 `backend/data/db/emotion_recognition.db` |
+详见 [LICENSE](LICENSE)（CC BY-NC 4.0）。
 
 ---
 
-## 许可与说明
+## 致谢与参考
 
-本项目适合用于学习、研究和个人二次开发。若将其用于公开发布或商业场景，请根据具体需求补充清晰的开源许可证和项目说明。
-
----
-
-## 相关参考
-
-- RAF-DB 数据集：用于表情识别任务训练
-- 前端与后端代码均位于当前仓库中，可直接本地运行
-
-如果你希望，我还可以继续把这个 README 再调整成更偏“GitHub 风格”的版本，例如更适合正式开源仓库展示的布局。
-
-
+- [RAF-DB](http://www.whdeng.cn/RAF/model1.html) 表情识别数据集及相关研究工作

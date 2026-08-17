@@ -1,9 +1,8 @@
 # 目录结构说明
 
-本仓库参照 OmniStream 的原则做了适配：**运行时代码 / 一次性脚本 / 文档 / 品牌资源分离**。  
-不引入 OmniStream 的 agent / skills / workflows 分层。
+本仓库采用「运行时代码 / 运维脚本 / 文档 / 品牌资源」分离的组织方式，便于维护与二次开发。
 
-更完整的启动说明见根目录 [README.md](../README.md) 与 [backend/README.md](../backend/README.md)。
+启动与使用说明见根目录 [README.md](../README.md) 与 [backend/README.md](../backend/README.md)。
 
 ## 仓库布局
 
@@ -40,26 +39,26 @@
             └── styles/theme.css
 ```
 
-## 品牌资源放哪里
+## 品牌资源
 
 | 路径 | 用途 |
 |------|------|
 | `frontend/src/assets/brand/` | 前端组件通过 `@/assets/brand/logo.png` 引用 |
-| `frontend/public/` | 浏览器 Favicon、README 展示图、静态 URL |
+| `frontend/public/` | Favicon、README 展示图、静态 URL |
 | `docs/brand/` | 设计源文件，不参与前端打包 |
-| ~~仓库根 `assets/`~~ | **已废弃**，勿再放应用图标 |
 
-## 导入与路径约定
+请勿在仓库根目录新建 `assets/` 存放应用图标，以免与前端静态资源职责混淆。
+
+## 约定
 
 - 后端在 `backend/` 下运行：`python main.py`；业务导入形如 `from src.api.app import app`
 - 配置只读 `src.config.settings`（含 `MODEL_PATHS`、`UPLOAD_FOLDER`、`DATABASE_URI`）
 - 上传文件相对 `backend/data/uploads/` 存库，经 `/api/uploads/<path>` 访问
 - 运维脚本：`import _bootstrap` 后再 `from src....`
-- 前端 HTTP 只放在 `src/api/`；页面在 `src/pages/`
+- 前端 HTTP 客户端位于 `src/api/`；路由页面位于 `src/pages/`
 
-## 明确不要放错的地方
+## 请勿错放
 
-- 不要把迁移脚本放回 `backend/` 根目录
-- 不要把 Vue 页面放回 `views/`（已统一为 `pages/`）
-- 不要把 axios 封装放回 `utils/`（已在 `api/`）
-- 不要在仓库根再建 `assets/` 放 Logo
+- 迁移 / 修复脚本应放在 `backend/scripts/`，不要放回 `backend/` 根目录
+- 页面组件使用 `pages/`，不要恢复已废弃的 `views/` 目录命名
+- Axios 封装放在 `api/`，不要放回 `utils/`

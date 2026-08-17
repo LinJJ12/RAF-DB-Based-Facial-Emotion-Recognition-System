@@ -236,7 +236,7 @@
 
     <!-- 底部信息 -->
     <div class="login-footer">
-      <p>&copy; 2025 情绪识别系统. All rights reserved.</p>
+      <p>&copy; 2026 情绪识别系统. All rights reserved.</p>
       <div class="footer-links">
         <el-link type="info" @click="showTerms">用户协议</el-link>
         <el-link type="info" @click="showPrivacy">隐私政策</el-link>

@@ -10,7 +10,7 @@ SRC_DIR = CONFIG_DIR.parent
 BACKEND_DIR = SRC_DIR.parent
 PROJECT_DIR = BACKEND_DIR.parent
 
-# 运行时数据根（对齐 OmniStream data/）
+# 运行时数据根（uploads / logs / db）
 DATA_DIR = BACKEND_DIR / 'data'
 UPLOAD_FOLDER = DATA_DIR / 'uploads'
 LOG_DIR = DATA_DIR / 'logs'
@@ -66,12 +66,13 @@ DATABASE_URI = os.environ.get(
 DATABASE_CONFIG = {
     'type': 'sqlite',
     'sqlite_path': SQLITE_PATH,
+    # 可选 MySQL 示例（请通过环境变量配置真实凭据，勿将生产密码写入仓库）
     'mysql': {
-        'host': 'localhost',
-        'port': 3306,
-        'user': 'root',
-        'password': 'your_password',
-        'database': 'emotion_db'
+        'host': os.environ.get('MYSQL_HOST', 'localhost'),
+        'port': int(os.environ.get('MYSQL_PORT', '3306')),
+        'user': os.environ.get('MYSQL_USER', 'root'),
+        'password': os.environ.get('MYSQL_PASSWORD', ''),
+        'database': os.environ.get('MYSQL_DATABASE', 'emotion_db')
     }
 }
 

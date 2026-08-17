@@ -32,13 +32,17 @@ python main.py
 
 服务地址：`http://localhost:5000`
 
-建议通过环境变量设置强随机 `JWT_SECRET_KEY`（未设置时会有警告）。
+也可从仓库根目录执行：`python backend/main.py`。
 
-也可从仓库根目录执行：`python backend/main.py`（入口会自动处理 `sys.path`）。
+## 安全配置
+
+- 通过环境变量设置 `JWT_SECRET_KEY`（强随机值）。未设置时仅适合本地调试。
+- `data/` 下的数据库、上传文件与日志可能包含用户数据，**请勿提交到公开仓库**。
+- 本地开发若存在演示账号，公网部署前必须修改口令或删除演示用户。
 
 ## 运维脚本
 
-脚本位于 `scripts/`。建议在该目录下执行（会自动把 `backend/` 加入 `sys.path`）：
+脚本位于 `scripts/`：
 
 ```cmd
 cd backend\scripts
@@ -63,4 +67,4 @@ python tests\test_upload_paths.py
 python tests\test_preprocessing.py
 ```
 
-依赖真实模型文件的用例需先将权重放到仓库根 `models/`。
+依赖真实模型文件的用例需先将权重放到仓库根目录 `models/`。
